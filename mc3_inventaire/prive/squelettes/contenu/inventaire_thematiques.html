@@ -1,0 +1,32 @@
+<B_thematiques>
+	<ul class="thematiques">
+		<BOUCLE_thematiques(THEMATIQUES){id_pay?}{id_ville?}{id_projet?}{par titre_fr}{tout}>
+			<li>
+				[(#STATUT|puce_statut{thematique,#ID_THEMATIQUE})]
+				<a href="#URL_ECRIRE?exec=thematique&id_thematique=#ID_THEMATIQUE">
+					#TITRE_FR
+					<BOUCLE_documents(DOCUMENTS){id_thematique}{tout}>
+						[(#TOTAL_BOUCLE|!={0}|oui) ( #TOTAL_BOUCLE [(#TOTAL_BOUCLE|>{1}|?{<:medias:objet_documents:>,<:medias:objet_document:>})] ) ]
+					</BOUCLE_documents>
+				</a>
+				
+					<ul class="chapitres">
+						<BOUCLE_chapitre(CHAPITRES){id_thematique}{tout}>
+							<li>
+								[(#STATUT|puce_statut{chapitre,#ID_CHAPITRE})]
+								<a href="#URL_ECRIRE?exec=chapitre&id_chapitre=#ID_CHAPITRE">
+									#TITRE_FR
+									<BOUCLE_documents_chap(DOCUMENTS){id_chapitre}{tout}>
+										[(#TOTAL_BOUCLE|!={0}|oui) ( #TOTAL_BOUCLE [(#TOTAL_BOUCLE|>{1}|?{<:medias:objet_documents:>,<:medias:objet_document:>})] ) ]
+									</BOUCLE_documents_chap>
+								</a>
+								
+							</li>
+						</BOUCLE_chapitre>
+					</ul>
+				
+			</li>
+			
+		</BOUCLE_thematiques>
+	</ul>
+</B_thematiques>

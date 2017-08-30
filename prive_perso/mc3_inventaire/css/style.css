@@ -1,0 +1,162 @@
+
+	
+/*--- liste objet associer ---*/
+	
+.liste-objets-associer.thematiques {
+	display:none;
+}
+
+.liste-objets-associer.villes {
+	display:none;
+}
+
+.liste-objets-associer.chapitres {
+	display:none;
+}
+
+.liste-objets-associer.projets {
+	display:none;
+}
+
+
+/* aperçu des nouveaux objets */
+.pay h3.titre_apercu, .ville h3.titre_apercu, .projet h3.titre_apercu, .thematique h3.titre_apercu, .chapitre h3.titre_apercu{
+	padding-top:2rem;
+}
+
+
+
+
+
+/*--- hierarchie ---*/
+.hierarchie_inventaire {
+
+}
+
+.hierarchie_inventaire a{
+	display:inline-block;
+}
+
+.hierarchie_inventaire li.ouvert>a{
+	color:black;
+}
+
+
+/*--- pays ---*/
+
+.hierarchie_inventaire ul.pays{
+	padding-left:0;
+}
+
+.hierarchie_inventaire ul.pays>li {
+	font-size:1.2rem;
+	line-height:1.3rem;
+	padding-bottom:1rem;
+	background-color:#D3D3D3;
+	padding:1rem;
+	margin-bottom:1rem;
+}
+
+.hierarchie_inventaire ul.pays>li.pays_autres {
+	font-size:1rem;
+	line-height:1rem;
+}
+
+.hierarchie_inventaire ul.pays>li.ajouter {
+	font-size:0.8rem;
+	line-height:1rem;
+	background-color:white;
+}
+
+.hierarchie_inventaire ul.pays>li>ul:first-child {
+	margin-top:0.5rem;
+}
+
+.hierarchie_inventaire ul.pays_eclate>li>a {
+	margin-bottom:1rem;
+}
+
+/*--- thématiques ---*/
+
+.hierarchie_inventaire ul.thematiques{
+	padding-bottom:0.5rem;
+	margin-bottom:1rem;
+	border-bottom:1px solid #7D7D7D;
+}
+
+.hierarchie_inventaire ul.thematiques>li {
+	padding:0.2rem 0;
+	font-size:0.8rem;
+	line-height:1.1rem;
+}
+
+/*--- villes ---*/
+
+.hierarchie_inventaire ul.villes>li {
+	padding:0.2rem 0;
+	font-size:0.9rem;
+	line-height:1.1rem;
+}
+
+.hierarchie_inventaire ul.villes>li.ouvert {
+	margin-bottom:1rem;
+}
+
+.hierarchie_inventaire ul.villes>li.ouvert ul:first-child {
+	margin-top:0.5rem;
+}
+
+/*--- villes / thematiques---*/
+
+.hierarchie_inventaire ul.villes>li>ul.thematiques {
+	margin-left:1.5rem;
+	margin-bottom:0.5rem;
+}
+
+.hierarchie_inventaire ul.villes>li>ul.thematiques>li {
+	font-size:0.7rem;
+	line-height:1.1rem;
+	padding:0.1rem 0;
+}
+
+
+/*--- projets ---*/
+
+.hierarchie_inventaire ul.projets{
+	margin-left:1.5rem;
+}
+
+.hierarchie_inventaire ul.projets>li {
+	padding:0.1rem 0;
+	font-size:0.75rem;
+	line-height:1.1rem;
+}
+
+/*--- projets / thematiques---*/
+
+.hierarchie_inventaire ul.projets>li>ul.thematiques {
+	margin-left:1.5rem;
+	margin-bottom:0.5rem;
+	border:none;
+}
+
+.hierarchie_inventaire ul.projets>li>ul.thematiques>li {
+	font-size:0.7rem;
+	line-height:1.1rem;
+	padding:0.1rem 0;
+}
+
+/*--- thematiques / chapitres---*/
+
+.hierarchie_inventaire ul.thematiques>li>ul.chapitres {
+	margin-left:1.5rem;
+	margin-bottom:0.5rem;
+	border:none;
+}
+
+.hierarchie_inventaire ul.thematiques>li>ul.chapitres>li {
+	font-size:0.7rem;
+	line-height:0.9rem;
+	padding:0.05rem 0;
+}
+

@@ -1,0 +1,23 @@
+<BOUCLE_chapitre(CHAPITRES){id_chapitre}{statut?}>
+
+[<div class="champ contenu_titre_fr[ (#TITRE_FR*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:chapitre:champ_titre_fr_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{titre_fr} titre_fr'>(#TITRE_FR)</div>
+</div>]
+
+[<div class="champ contenu_texte_fr[ (#TEXTE_FR*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:chapitre:champ_texte_fr_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{texte_fr} texte_fr'>(#TEXTE_FR)</div>
+</div>]
+
+[<div class="champ contenu_titre_en[ (#TITRE_EN*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:chapitre:champ_titre_en_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{titre_en} titre_en'>(#TITRE_EN)</div>
+</div>]
+
+[<div class="champ contenu_texte_en[ (#TEXTE_EN*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:chapitre:champ_texte_en_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{texte_en} texte_en'>(#TEXTE_EN)</div>
+</div>]
+
+</BOUCLE_chapitre>

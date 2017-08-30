@@ -1,0 +1,20 @@
+<BOUCLE_glomot(GLOMOTS){id_glomot}{statut IN publie, prepa, prop, refuse}>
+<li>
+	[(#STATUT|puce_statut{glomot,#ID_GLOMOT})] 
+	<a href="#URL_ECRIRE?exec=glomot&id_glomot=#ID_GLOMOT">  
+		#TITRE
+	</a>
+	
+	<B_glodef>
+		 <ul class="defs">
+			 <BOUCLE_glodef(GLODEFS){id_glomot}{statut IN publie, prepa, prop, refuse}>
+			 	<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+			 		[(#STATUT|puce_statut{glodef,#ID_GLODEF})] 
+			 		<a href="#URL_ECRIRE?exec=glodef&id_glodef=#ID_GLODEF">[(#DEFINITION|couper{50})]</a>
+			 	</li>
+			 </BOUCLE_glodef>
+		 </ul>
+	</B_glodef>
+	
+</li>
+</BOUCLE_glomot>

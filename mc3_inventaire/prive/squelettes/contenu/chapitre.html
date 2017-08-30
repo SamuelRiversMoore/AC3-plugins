@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,chapitre,#ID_CHAPITRE}|sinon_interdire_acces)]
+<BOUCLE_chapitre(CHAPITRES){id_chapitre}{statut==.*}{si #ENV{exec}|=={chapitre}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE})
+		[(#ID_CHAPITRE|afficher_qui_edite{chapitre}|non)
+			[(#URL_ECRIRE{chapitre_edit,id_chapitre=#ID_CHAPITRE}|icone_verticale{<:chapitre:icone_modifier_chapitre:>,chapitre,edit,right ajax preload})]
+		]
+		[(#ID_CHAPITRE|afficher_qui_edite{chapitre}|oui)
+			[(#URL_ECRIRE{chapitre_edit,id_chapitre=#ID_CHAPITRE}|icone_verticale{#ID_CHAPITRE|afficher_qui_edite{chapitre},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>(#TITRE_FR|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{chapitre-24.png}|balise_img{chapitre,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{chapitre,#ID_CHAPITRE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/chapitre,id=#ID_CHAPITRE,id_chapitre=#ID_CHAPITRE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE})
+	[(#ID_CHAPITRE|afficher_qui_edite{chapitre}|non)
+		[(#URL_ECRIRE{chapitre_edit,id_chapitre=#ID_CHAPITRE}|icone_verticale{<:chapitre:icone_modifier_chapitre:>,chapitre,edit,right ajax preload})]
+	]
+	[(#ID_CHAPITRE|afficher_qui_edite{chapitre}|oui)
+		[(#URL_ECRIRE{chapitre_edit,id_chapitre=#ID_CHAPITRE}|icone_verticale{#ID_CHAPITRE|afficher_qui_edite{chapitre},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,chapitre,id,#ID_CHAPITRE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_chapitre>
+[(#ENV**{exec}|=={chapitre_edit}|?{#INCLURE{fond=prive/squelettes/contenu/chapitre_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_chapitre>

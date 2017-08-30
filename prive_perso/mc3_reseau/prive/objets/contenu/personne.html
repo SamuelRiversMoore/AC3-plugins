@@ -1,0 +1,28 @@
+<BOUCLE_personne(PERSONNES){id_personne}{statut?}>
+
+[<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
+	<label><:personne:champ_nom_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{nom} nom'>(#NOM)</span>
+</div>]
+
+[<div class="champ contenu_fonction[ (#FONCTION*|strlen|?{'',vide})]">
+	<label><:personne:champ_fonction_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{fonction} fonction'>(#FONCTION)</span>
+</div>]
+
+[<div class="champ contenu_societe[ (#SOCIETE*|strlen|?{'',vide})]">
+	<label><:personne:champ_societe_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{societe} societe'>(#SOCIETE)</span>
+</div>]
+
+[<div class="champ contenu_pays[ (#PAYS*|strlen|?{'',vide})]">
+	<label><:personne:champ_pays_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{pays} pays'>(#PAYS)</span>
+</div>]
+
+[<div class="champ contenu_email[ (#EMAIL*|strlen|?{'',vide})]">
+	<label><:personne:champ_email_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{email} email'>(#EMAIL)</span>
+</div>]
+
+</BOUCLE_personne>

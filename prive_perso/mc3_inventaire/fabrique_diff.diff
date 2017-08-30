@@ -1,0 +1,10 @@
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_inventaire.php ../plugins/fabrique_auto/.backup/mc3_inventaire/lang/projet_fr.php ../plugins/fabrique_auto/mc3_inventaire/lang/projet_fr.php
+18c18
+< 	'champ_titre_en_label' => 'title (english)',
+---
+> 	'champ_titre_en_label' => 'Title (english)',
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_inventaire.php ../plugins/fabrique_auto/.backup/mc3_inventaire/paquet.xml ../plugins/fabrique_auto/mc3_inventaire/paquet.xml
+12c12
+< 		Paquet genere le 2015-10-23 17:49:14
+---
+> 		Paquet genere le 2015-10-23 17:57:41

@@ -1,0 +1,63 @@
+[(#SET{defaut_tri,#ARRAY{
+	multi titre,1,
+	date,-1, 
+	id_gloref,1
+}})
+]
+#SET{selection,#ENV**{selection,#ENV{objet_source}|lister_objets_lies{#ENV{objet},#ENV{id_objet},#ENV{_objet_lien}}}}
+#SET{debut,#ENV{debutglol,#EVAL{_request("debutglol");}}}
+<B_liste_glorefs>
+[(#REM) En cas de pagination indirecte @32, il faut refaire le set car la boucle
+a mis a jour la valeur avec la page reelle]
+#SET{debut,#ENV{debutglol,#EVAL{_request("debutglol");}}}
+#SET{afficher_lettres,#TRI|=={'multi titre'}|oui}
+#ANCRE_PAGINATION
+<div class="liste-objets liste-objets-lies glorefs">
+<table class='spip liste'>
+[<caption><strong class="caption">(#ENV*{titre,#GRAND_TOTAL|singulier_ou_pluriel{gloref:info_1_gloref,gloref:info_nb_glorefs}})</strong></caption>]
+	<thead>
+		#SET{p,''}
+		<BOUCLE_lettre(GLOREFS){tout}{id_gloref IN #GET{selection}}{where?}{statut?}
+			{tri #ENV{par,multi titre},#GET{defaut_tri}}{id_gloref==#GET{afficher_lettres}|?{'.*','A'}}>[
+		(#TITRE**|extraire_multi|initiale|unique|oui)
+		[(#SET{p,#GET{p}|concat{
+		#SELF|parametre_url{debutglol,@#ID_GLOREF}|ancre_url{paginationglol}|afficher_initiale{#TITRE**|extraire_multi|initiale{},#COMPTEUR_BOUCLE,#GET{debut},#ENV{nb,10}}
+		}})]
+		]#SAUTER{#ENV{nb,10}|moins{#COMPTEUR_BOUCLE|=={1}|?{2,1}}}</BOUCLE_lettre>[
+		(#SET{p,
+			#GET{p}|concat{
+				#REM|afficher_initiale{#REM,#TOTAL_BOUCLE,#GET{debut},#ENV{nb,10}}
+			}
+		})]</B_lettre>
+		[<tr><td colspan="4"><p class='pagination'>(#GET{p})</p></td></tr>]
+
+		<tr class='first_row'>
+			<th class='statut' scope='col'>[(#TRI{statut,<span title="<:lien_trier_statut|attribut_html:>">#</span>,ajax})]</th> 
+			<th class='titre' scope='col'>[(#TRI{multi titre,<:gloref:champ_titre_label:>,ajax})]</th>
+			<th class='action' scope='col'></th>
+		</tr>
+	</thead>
+	<tbody>
+	<BOUCLE_liste_glorefs(GLOREFS){id_gloref IN #GET{selection}}{statut?}
+		{tri #ENV{par,multi titre},#GET{defaut_tri}}{pagination #ENV{nb,10} glol}>
+		<tr class="[(#COMPTEUR_BOUCLE|alterner{row_odd,row_even})][ (#EXPOSE|unique)][ (#TITRE**|extraire_multi|initiale|=={#ENV{i}}|?{on}|unique)][(#ID_GLOREF|=={#ENV{id_lien_ajoute}}|oui)append]">
+			<td class='statut'>[(#STATUT|puce_statut{gloref})]</td> 
+			<td class='titre'>[(#LOGO_GLOREF|image_reduire{20,20})]<a href="[(#ID_GLOREF|generer_url_entite{gloref})]">#TITRE</a></td>
+
+			<td class='action'>
+				[(#ENV{editable}|oui)
+					<button class="button link delete" name="supprimer_lien\[gloref-#ID_GLOREF-#OBJET-#ID_OBJET\]" value="X"><:gloref:retirer_lien_gloref:> [(#CHEMIN_IMAGE{supprimer-12.png}|balise_img{'X'})]</button>
+				]
+			</td>
+		</tr>
+	</BOUCLE_liste_glorefs>
+	</tbody>
+</table>
+[<p class='pagination'>(#PAGINATION{prive})</p>]
+[(#GRAND_TOTAL|>{3}|oui)<div class="action"><button class="button link" name="supprimer_lien\[gloref-*-#OBJET-#ID_OBJET\]" value="X"><:gloref:retirer_tous_liens_glorefs:> [(#CHEMIN_IMAGE{supprimer-8.png}|balise_img{'X'})]</button></div>]
+</div>
+</B_liste_glorefs>
+<div class="liste-objets liste-objets-lies GLOREFS caption-wrap">
+	<strong class="caption">[(#ENV*{titre,<:gloref:info_aucun_gloref:>})]</strong>
+</div>
+<//B_liste_glorefs>

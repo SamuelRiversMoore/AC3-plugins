@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/chapitres, par=titre_fr, env, ajax, sinon=<:chapitre:info_aucun_chapitre:>}>
+
+[(#AUTORISER{creer,chapitre})
+	[(#URL_ECRIRE{chapitre_edit,new=oui}|icone_verticale{<:chapitre:icone_creer_chapitre:>,chapitre,new,right})]
+]

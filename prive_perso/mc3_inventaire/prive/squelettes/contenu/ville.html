@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,ville,#ID_VILLE}|sinon_interdire_acces)]
+<BOUCLE_ville(VILLES){id_ville}{statut==.*}{si #ENV{exec}|=={ville}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,ville,#ID_VILLE})
+		[(#ID_VILLE|afficher_qui_edite{ville}|non)
+			[(#URL_ECRIRE{ville_edit,id_ville=#ID_VILLE}|icone_verticale{<:ville:icone_modifier_ville:>,ville,edit,right ajax preload})]
+		]
+		[(#ID_VILLE|afficher_qui_edite{ville}|oui)
+			[(#URL_ECRIRE{ville_edit,id_ville=#ID_VILLE}|icone_verticale{#ID_VILLE|afficher_qui_edite{ville},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM_FR|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{ville-24.png}|balise_img{ville,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{ville,#ID_VILLE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/ville,id=#ID_VILLE,id_ville=#ID_VILLE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,ville,#ID_VILLE})
+	[(#ID_VILLE|afficher_qui_edite{ville}|non)
+		[(#URL_ECRIRE{ville_edit,id_ville=#ID_VILLE}|icone_verticale{<:ville:icone_modifier_ville:>,ville,edit,right ajax preload})]
+	]
+	[(#ID_VILLE|afficher_qui_edite{ville}|oui)
+		[(#URL_ECRIRE{ville_edit,id_ville=#ID_VILLE}|icone_verticale{#ID_VILLE|afficher_qui_edite{ville},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,ville,id,#ID_VILLE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_ville>
+[(#ENV**{exec}|=={ville_edit}|?{#INCLURE{fond=prive/squelettes/contenu/ville_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_ville>

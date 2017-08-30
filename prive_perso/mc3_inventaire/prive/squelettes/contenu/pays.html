@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/pays, par=nom_fr, env, ajax, sinon=<:pay:info_aucun_pay:>}>
+
+[(#AUTORISER{creer,pay})
+	[(#URL_ECRIRE{pay_edit,new=oui}|icone_verticale{<:pay:icone_creer_pay:>,pay,new,right})]
+]

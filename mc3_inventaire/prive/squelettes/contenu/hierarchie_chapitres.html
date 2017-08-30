@@ -1,0 +1,11 @@
+<B_chapitres>
+	<ul class="chapitres">
+		<BOUCLE_chapitres(CHAPITRES){id_thematique?}{statut IN publie, prepa, prop, refuse}>
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				[(#STATUT|puce_statut{chapitre,#ID_CHAPITRE})] <a href="#URL_ECRIRE?exec=chapitre&id_chapitre=#ID_CHAPITRE">
+					#TITRE_FR
+				</a>
+			</li>
+		</BOUCLE_chapitres>
+	</ul>
+</B_chapitres>

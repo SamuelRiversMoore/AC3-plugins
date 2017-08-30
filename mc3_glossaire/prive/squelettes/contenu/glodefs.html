@@ -1,0 +1,8 @@
+#FORMULAIRE_RECHERCHE_ECRIRE{#SELF,ajax}
+<div class="nettoyeur"></div>
+
+<INCLURE{fond=prive/objets/liste/glodefs, par=definition, env, ajax, sinon=<:glodef:info_aucun_glodef:>}>
+
+[(#AUTORISER{creer,glodef})
+	[(#URL_ECRIRE{glodef_edit,new=oui}|icone_verticale{<:glodef:icone_creer_glodef:>,glodef,new,right})]
+]

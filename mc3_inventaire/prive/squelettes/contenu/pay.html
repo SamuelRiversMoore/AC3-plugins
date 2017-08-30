@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,pay,#ID_PAY}|sinon_interdire_acces)]
+<BOUCLE_pay(PAYS){id_pay}{statut==.*}{si #ENV{exec}|=={pay}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,pay,#ID_PAY})
+		[(#ID_PAY|afficher_qui_edite{pay}|non)
+			[(#URL_ECRIRE{pay_edit,id_pay=#ID_PAY}|icone_verticale{<:pay:icone_modifier_pay:>,pay,edit,right ajax preload})]
+		]
+		[(#ID_PAY|afficher_qui_edite{pay}|oui)
+			[(#URL_ECRIRE{pay_edit,id_pay=#ID_PAY}|icone_verticale{#ID_PAY|afficher_qui_edite{pay},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#NOM_FR|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{pay-24.png}|balise_img{pay,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{pay,#ID_PAY}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/pay,id=#ID_PAY,id_pay=#ID_PAY,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,pay,#ID_PAY})
+	[(#ID_PAY|afficher_qui_edite{pay}|non)
+		[(#URL_ECRIRE{pay_edit,id_pay=#ID_PAY}|icone_verticale{<:pay:icone_modifier_pay:>,pay,edit,right ajax preload})]
+	]
+	[(#ID_PAY|afficher_qui_edite{pay}|oui)
+		[(#URL_ECRIRE{pay_edit,id_pay=#ID_PAY}|icone_verticale{#ID_PAY|afficher_qui_edite{pay},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,pay,id,#ID_PAY},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_pay>
+[(#ENV**{exec}|=={pay_edit}|?{#INCLURE{fond=prive/squelettes/contenu/pay_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_pay>

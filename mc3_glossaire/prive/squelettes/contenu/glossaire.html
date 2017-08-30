@@ -1,0 +1,61 @@
+
+
+<div class="glossaire_centre">
+
+<!-- construction du tableau d'initiales -->
+[(#SET{tab_initiales,#ARRAY})]
+<BOUCLE_remplir_tableau(GLOMOTS){par titre}{statut IN publie, prepa, prop, refuse}>
+  [(#SET{tab_initiales, #GET{tab_initiales}|push{#TITRE|mb_substr{0,1,'UTF-8'}|strtolower}})]
+</BOUCLE_remplir_tableau>			
+[(#SET{tab_initiales, #GET{tab_initiales}|array_unique})]
+
+
+	
+	
+	<h3><:glomot:titre_glomot:></h3>
+	
+	<ul class="mots">
+		<li class="ajouter">
+			<a href="#URL_ECRIRE?exec=glomot_edit&new=oui">+ <:glomot:texte_ajouter_glomot:></a>
+		</li>
+		
+		
+	<BOUCLE_lire_tableau(DATA){source tableau,#GET{tab_initiales}}>
+		<li>#VALEUR
+			<ul>
+				<BOUCLE_mots(GLOMOTS){par titre}{statut IN publie, prepa, prop, refuse}>
+					[(#TITRE|mb_substr{0,1,'UTF-8'}|strtolower|=={#VALEUR}|oui) 
+						<INCLURE{fond=prive/squelettes/contenu/mots, id_glomot, id_glodef} /> ]
+				</BOUCLE_mots>
+			</ul>
+		</li>
+	</BOUCLE_lire_tableau>
+
+	</ul>
+	
+	<h3><:gloref:titre_gloref:></h3>
+	
+	
+	
+	<ul class="references">
+		<li class="ajouter"><a href="#URL_ECRIRE?exec=gloref_edit&new=oui">+ <:gloref:texte_ajouter_gloref:></a></li>
+		
+		<BOUCLE_references(GLOREFS){par titre}{statut IN publie, prepa, prop, refuse}>
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				[(#STATUT|puce_statut{gloref,#ID_GLOREF})] 
+				<a href="#URL_ECRIRE?exec=gloref&id_gloref=#ID_GLOREF">
+					#TITRE
+				</a>
+				
+			</li>
+		</BOUCLE_references>
+		
+		
+	</ul>
+	
+</div>
+
+
+
+
+

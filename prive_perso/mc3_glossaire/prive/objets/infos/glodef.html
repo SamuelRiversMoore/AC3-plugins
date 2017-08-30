@@ -1,0 +1,28 @@
+<BOUCLE_glodef(GLODEFS){id_glodef=#ENV{id}}{statut?}>
+<div class='infos'>
+[(#SET{texte_objet,<:glodef:titre_glodef:>})]
+<div class='numero'><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_GLODEF</p></div>
+
+[(#FORMULAIRE_INSTITUER_OBJET{glodefs,#ID_GLODEF})]
+
+[(#REM)
+
+	Bouton voir en ligne
+
+]
+<BOUCLE_publie(GLODEFS){id_glodef}>
+	[(#VAL{redirect}
+		|generer_url_action{type=glodefs&id=#ID_GLODEF}
+		|parametre_url{var_mode,calcul}
+		|icone_horizontale{<:icone_voir_en_ligne:>,racine})]
+</BOUCLE_publie>
+	[(#AUTORISER{previsualiser,glodefs,#ID_GLODEF,'',#ARRAY{statut,#STATUT}})
+		[(#VAL{redirect}
+			|generer_url_action{type=glodefs&id=#ID_GLODEF}
+			|parametre_url{var_mode,preview}
+			|icone_horizontale{<:previsualiser:>,preview})]
+	]
+<//B_publie>
+
+</div>
+</BOUCLE_glodef>

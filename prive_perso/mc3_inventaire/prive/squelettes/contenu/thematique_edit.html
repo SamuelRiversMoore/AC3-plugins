@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,thematique,#ID_THEMATIQUE}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,thematique}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_THEMATIQUE|?{#ID_THEMATIQUE|generer_url_entite{thematique},#URL_ECRIRE{thematiques}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_THEMATIQUE|oui)
+	[(#GET{redirect}|icone_verticale{Retour,thematique,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_THEMATIQUE|?{<:thematique:icone_modifier_thematique:>,<:thematique:icone_creer_thematique:>})]
+		<h1>(#ENV{titre,#INFO_TITRE_FR{thematique,#ID_THEMATIQUE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_THEMATIQUE|generer_url_entite{thematique}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_THEMATIQUE{#ENV{id_thematique,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

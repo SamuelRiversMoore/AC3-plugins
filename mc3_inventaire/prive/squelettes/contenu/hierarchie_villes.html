@@ -1,0 +1,12 @@
+<B_villes_autre>
+	<ul class="villes">
+		<BOUCLE_villes_autre(VILLES){id_pay}{statut IN publie, prepa, prop, refuse}>
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				 [(#STATUT|puce_statut{ville,#ID_VILLE})] <a href="#URL_ECRIRE?exec=ville&id_ville=#ID_VILLE">
+					#NOM_FR
+				 </a>
+				[(#EXPOSE|=={on}|oui) <INCLURE{fond=prive/squelettes/contenu/hierarchie_thematiques, id_ville, id_thematique, id_chapitre} /> <INCLURE{fond=prive/squelettes/contenu/hierarchie_projets, id_ville, id_projet, id_thematique, id_chapitre} /> ]
+			</li>
+		</BOUCLE_villes_autre>
+	</ul>
+</B_villes_autre>

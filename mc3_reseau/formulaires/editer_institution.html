@@ -1,0 +1,34 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_institution,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_institution' value='#ENV{id_institution}' />
+		<ul>
+
+			[(#SAISIE{input, nom,
+				label=<:institution:champ_nom_label:>})]
+
+			[<li class="editer editer_rubrique[ (#ENV**{erreurs/id_parent}|oui)erreur]">
+					<label for="id_parent"><:titre_cadre_interieur_rubrique:></label>[
+					<span class="erreur_message">(#ENV**{erreurs/id_parent})</span>
+					]
+					(#VAL|chercher_rubrique{#ENV{id_institution},#ENV{id_parent},'institution',#ENV{id_secteur},'',0,form_simple})
+			</li>]
+
+			[(#SAISIE{textarea, description,
+				label=<:institution:champ_description_label:>,
+				class=inserer_barre_edition})]
+
+			[(#SAISIE{input, lien,
+				label=<:institution:champ_lien_label:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

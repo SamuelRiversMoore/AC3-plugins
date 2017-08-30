@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,glodef,#ID_GLODEF}|sinon_interdire_acces)]
+<BOUCLE_glodef(GLODEFS){id_glodef}{statut==.*}{si #ENV{exec}|=={glodef}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,glodef,#ID_GLODEF})
+		[(#ID_GLODEF|afficher_qui_edite{glodef}|non)
+			[(#URL_ECRIRE{glodef_edit,id_glodef=#ID_GLODEF}|icone_verticale{<:glodef:icone_modifier_glodef:>,glodef,edit,right ajax preload})]
+		]
+		[(#ID_GLODEF|afficher_qui_edite{glodef}|oui)
+			[(#URL_ECRIRE{glodef_edit,id_glodef=#ID_GLODEF}|icone_verticale{#ID_GLODEF|afficher_qui_edite{glodef},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#DEFINITION|couper{120}|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{glodef-24.png}|balise_img{glodef,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{glodef,#ID_GLODEF}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/glodef,id=#ID_GLODEF,id_glodef=#ID_GLODEF,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,glodef,#ID_GLODEF})
+	[(#ID_GLODEF|afficher_qui_edite{glodef}|non)
+		[(#URL_ECRIRE{glodef_edit,id_glodef=#ID_GLODEF}|icone_verticale{<:glodef:icone_modifier_glodef:>,glodef,edit,right ajax preload})]
+	]
+	[(#ID_GLODEF|afficher_qui_edite{glodef}|oui)
+		[(#URL_ECRIRE{glodef_edit,id_glodef=#ID_GLODEF}|icone_verticale{#ID_GLODEF|afficher_qui_edite{glodef},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,glodef,id,#ID_GLODEF},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_glodef>
+[(#ENV**{exec}|=={glodef_edit}|?{#INCLURE{fond=prive/squelettes/contenu/glodef_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_glodef>

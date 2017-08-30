@@ -1,0 +1,12 @@
+<B_projets>
+	<ul class="projets">
+		<BOUCLE_projets(PROJETS){id_ville}{statut IN publie, prepa, prop, refuse}>
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				[(#STATUT|puce_statut{projet,#ID_PROJET})] <a href="#URL_ECRIRE?exec=projet&id_projet=#ID_PROJET">
+					#TITRE_FR
+				 </a>
+				[(#EXPOSE|=={on}|oui) <INCLURE{fond=prive/squelettes/contenu/hierarchie_thematiques, id_projet, id_thematique, id_chapitre} /> ]
+			</li>
+		</BOUCLE_projets>
+	</ul>
+</B_projets>

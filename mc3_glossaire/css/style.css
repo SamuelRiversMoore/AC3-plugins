@@ -1,0 +1,46 @@
+
+/*--- liste objet associer ---*/
+	
+.liste-objets-associer.glodefs {
+	display:none;
+}
+
+/*--- le glossaire ---*/
+
+.glossaire_centre h3{
+	margin-top:2rem;
+}
+
+.glossaire_centre ul.mots>li{
+	font-size:1.5rem;
+	line-height:1.5rem;
+	margin-bottom:1rem;
+	text-transform:uppercase;
+}
+
+.glossaire_centre li.ouvert>a{
+	color:black;
+}
+
+.glossaire_centre ul.mots>li.ajouter{
+	font-size:1rem;
+	line-height:1rem;
+}
+
+
+.glossaire_centre ul.mots>li>ul{
+	margin-top:0.5rem;
+}
+
+.glossaire_centre ul.mots>li>ul>li{
+	font-size:0.8rem;
+	line-height:0.8rem;
+	margin:0 0.2rem 0.5rem 0;
+}
+
+.glossaire_centre ul.defs{
+	font-size:0.6rem;
+	line-height:0.8rem;
+	margin-left:1rem;
+	margin-bottom:1rem;
+}

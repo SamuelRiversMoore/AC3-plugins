@@ -1,0 +1,38 @@
+<paquet
+	prefix="mc3_glossaire"
+	categorie="divers"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.20;3.1.*]"
+	logo="prive/themes/spip/images/mc3_glossaire-64.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2015-10-27 14:31:03
+	-->
+
+	<nom>MC3 glossaire</nom>
+
+	<auteur>emmanuel kormann</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="mc3_glossaire_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/mc3_glossaire.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/mc3_glossaire.php" /> 
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/mc3_glossaire.php" /> 
+	<pipeline nom="affiche_milieu" inclure="mc3_glossaire_pipelines.php" /> 
+	<pipeline nom="optimiser_base_disparus" inclure="mc3_glossaire_pipelines.php" /> 
+	
+	<pipeline nom="header_prive" inclure="mc3_glossaire_pipelines.php" /> 
+	<pipeline nom="affiche_gauche" inclure="mc3_glossaire_pipelines.php" /> 
+
+
+	
+	<menu nom="glossaire" titre="mc3_glossaire:titre_glossaire" parent="menu_edition" icone="images/glomot-16.png" action="glossaire" /> 
+
+</paquet>

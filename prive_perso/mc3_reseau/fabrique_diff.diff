@@ -1,0 +1,10 @@
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_reseau.php ../plugins/fabrique_auto/.backup/mc3_reseau/paquet.xml ../plugins/fabrique_auto/mc3_reseau/paquet.xml
+12c12
+< 		Paquet genere le 2015-11-03 13:08:06
+---
+> 		Paquet genere le 2015-11-03 13:10:29
+Binary files ../plugins/fabrique_auto/.backup/mc3_reseau/prive/themes/spip/images/institution-16.png and ../plugins/fabrique_auto/mc3_reseau/prive/themes/spip/images/institution-16.png differ
+Binary files ../plugins/fabrique_auto/.backup/mc3_reseau/prive/themes/spip/images/institution-add-16.png and ../plugins/fabrique_auto/mc3_reseau/prive/themes/spip/images/institution-add-16.png differ
+Binary files ../plugins/fabrique_auto/.backup/mc3_reseau/prive/themes/spip/images/institution-del-16.png and ../plugins/fabrique_auto/mc3_reseau/prive/themes/spip/images/institution-del-16.png differ
+Binary files ../plugins/fabrique_auto/.backup/mc3_reseau/prive/themes/spip/images/institution-edit-16.png and ../plugins/fabrique_auto/mc3_reseau/prive/themes/spip/images/institution-edit-16.png differ
+Binary files ../plugins/fabrique_auto/.backup/mc3_reseau/prive/themes/spip/images/institution-new-16.png and ../plugins/fabrique_auto/mc3_reseau/prive/themes/spip/images/institution-new-16.png differ

@@ -1,0 +1,39 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_personne,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_personne' value='#ENV{id_personne}' />
+		<ul>
+
+			[(#SAISIE{input, nom,
+				label=<:personne:champ_nom_label:>})]
+
+			[<li class="editer editer_rubrique[ (#ENV**{erreurs/id_parent}|oui)erreur]">
+					<label for="id_parent"><:titre_cadre_interieur_rubrique:></label>[
+					<span class="erreur_message">(#ENV**{erreurs/id_parent})</span>
+					]
+					(#VAL|chercher_rubrique{#ENV{id_personne},#ENV{id_parent},'personne',#ENV{id_secteur},'',0,form_simple})
+			</li>]
+
+			[(#SAISIE{input, fonction,
+				label=<:personne:champ_fonction_label:>})]
+
+			[(#SAISIE{input, societe,
+				label=<:personne:champ_societe_label:>})]
+
+			[(#SAISIE{input, pays,
+				label=<:personne:champ_pays_label:>})]
+
+			[(#SAISIE{input, email,
+				label=<:personne:champ_email_label:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

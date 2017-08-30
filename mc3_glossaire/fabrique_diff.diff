@@ -1,0 +1,59 @@
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_glossaire.php ../plugins/fabrique_auto/.backup/mc3_glossaire/base/mc3_glossaire.php ../plugins/fabrique_auto/mc3_glossaire/base/mc3_glossaire.php
+149c149
+< 		'tables_jointures'  => array(),
+---
+> 		'tables_jointures'  => array('spip_glorefs_liens'),
+197a198,209
+> 	$tables['spip_glorefs_liens'] = array(
+> 		'field' => array(
+> 			"id_gloref"          => "bigint(21) DEFAULT '0' NOT NULL",
+> 			"id_objet"           => "bigint(21) DEFAULT '0' NOT NULL",
+> 			"objet"              => "VARCHAR(25) DEFAULT '' NOT NULL",
+> 			"vu"                 => "VARCHAR(6) DEFAULT 'non' NOT NULL"
+> 		),
+> 		'key' => array(
+> 			"PRIMARY KEY"        => "id_gloref,id_objet,objet",
+> 			"KEY id_gloref"      => "id_gloref"
+> 		)
+> 	);
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_glossaire.php ../plugins/fabrique_auto/.backup/mc3_glossaire/mc3_glossaire_administrations.php ../plugins/fabrique_auto/mc3_glossaire/mc3_glossaire_administrations.php
+27c27
+< 	$maj['create'] = array(array('maj_tables', array('spip_glomots', 'spip_glodefs', 'spip_glodefs_liens', 'spip_glorefs')));
+---
+> 	$maj['create'] = array(array('maj_tables', array('spip_glomots', 'spip_glodefs', 'spip_glodefs_liens', 'spip_glorefs', 'spip_glorefs_liens')));
+46a47
+> 	sql_drop_table("spip_glorefs_liens");
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_glossaire.php ../plugins/fabrique_auto/.backup/mc3_glossaire/mc3_glossaire_autorisations.php ../plugins/fabrique_auto/mc3_glossaire/mc3_glossaire_autorisations.php
+303a304,316
+> /**
+>  * Autorisation de lier/délier l'élément (glorefs)
+>  *
+>  * @param  string $faire Action demandée
+>  * @param  string $type  Type d'objet sur lequel appliquer l'action
+>  * @param  int    $id    Identifiant de l'objet
+>  * @param  array  $qui   Description de l'auteur demandant l'autorisation
+>  * @param  array  $opt   Options de cette autorisation
+>  * @return bool          true s'il a le droit, false sinon
+> **/
+> function autoriser_associerglorefs_dist($faire, $type, $id, $qui, $opt) {
+> 	return $qui['statut'] == '0minirezo' AND !$qui['restreint'];
+> }
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_glossaire.php ../plugins/fabrique_auto/.backup/mc3_glossaire/mc3_glossaire_pipelines.php ../plugins/fabrique_auto/mc3_glossaire/mc3_glossaire_pipelines.php
+37a38,45
+> 	// glorefs sur les glodefs
+> 	if (!$e['edition'] AND in_array($e['type'], array('glodef'))) {
+> 		$texte .= recuperer_fond('prive/objets/editer/liens', array(
+> 			'table_source' => 'glorefs',
+> 			'objet' => $e['type'],
+> 			'id_objet' => $flux['args'][$e['id_table_objet']]
+> 		));
+> 	}
+61c69
+< 	$flux['data'] += objet_optimiser_liens(array('glodef'=>'*'),'*');
+---
+> 	$flux['data'] += objet_optimiser_liens(array('glodef'=>'*', 'gloref'=>'*'),'*');
+diff -r -x . -x .. -x fabrique_diff.diff -x fabrique_mc3_glossaire.php ../plugins/fabrique_auto/.backup/mc3_glossaire/paquet.xml ../plugins/fabrique_auto/mc3_glossaire/paquet.xml
+12c12
+< 		Paquet genere le 2015-10-25 13:05:59
+---
+> 		Paquet genere le 2015-10-27 14:31:03

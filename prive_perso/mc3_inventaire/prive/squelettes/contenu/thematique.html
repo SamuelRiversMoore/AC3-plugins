@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,thematique,#ID_THEMATIQUE}|sinon_interdire_acces)]
+<BOUCLE_thematique(THEMATIQUES){id_thematique}{statut==.*}{si #ENV{exec}|=={thematique}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,thematique,#ID_THEMATIQUE})
+		[(#ID_THEMATIQUE|afficher_qui_edite{thematique}|non)
+			[(#URL_ECRIRE{thematique_edit,id_thematique=#ID_THEMATIQUE}|icone_verticale{<:thematique:icone_modifier_thematique:>,thematique,edit,right ajax preload})]
+		]
+		[(#ID_THEMATIQUE|afficher_qui_edite{thematique}|oui)
+			[(#URL_ECRIRE{thematique_edit,id_thematique=#ID_THEMATIQUE}|icone_verticale{#ID_THEMATIQUE|afficher_qui_edite{thematique},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>(#TITRE_FR|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{thematique-24.png}|balise_img{thematique,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{thematique,#ID_THEMATIQUE}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/thematique,id=#ID_THEMATIQUE,id_thematique=#ID_THEMATIQUE,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,thematique,#ID_THEMATIQUE})
+	[(#ID_THEMATIQUE|afficher_qui_edite{thematique}|non)
+		[(#URL_ECRIRE{thematique_edit,id_thematique=#ID_THEMATIQUE}|icone_verticale{<:thematique:icone_modifier_thematique:>,thematique,edit,right ajax preload})]
+	]
+	[(#ID_THEMATIQUE|afficher_qui_edite{thematique}|oui)
+		[(#URL_ECRIRE{thematique_edit,id_thematique=#ID_THEMATIQUE}|icone_verticale{#ID_THEMATIQUE|afficher_qui_edite{thematique},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,thematique,id,#ID_THEMATIQUE},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_thematique>
+[(#ENV**{exec}|=={thematique_edit}|?{#INCLURE{fond=prive/squelettes/contenu/thematique_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_thematique>

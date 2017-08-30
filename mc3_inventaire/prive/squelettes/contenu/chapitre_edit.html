@@ -1,0 +1,30 @@
+[(#ID_OBJET|oui)
+	[(#AUTORISER{modifier,chapitre,#ID_CHAPITRE}|sinon_interdire_acces)]
+][(#ID_OBJET|non)
+	[(#AUTORISER{creer,chapitre}|sinon_interdire_acces)]
+]
+ 
+#SET{redirect,#ENV{redirect}|sinon{#ID_CHAPITRE|?{#ID_CHAPITRE|generer_url_entite{chapitre},#URL_ECRIRE{chapitres}}}}
+
+<div class='cadre-formulaire-editer'>
+<div class="entete-formulaire">
+	[(#ID_CHAPITRE|oui)
+	[(#GET{redirect}|icone_verticale{Retour,chapitre,'',left retour[(#ENV{retourajax,''}|oui)ajax preload]})]
+	]
+	[
+		[(#ID_CHAPITRE|?{<:chapitre:icone_modifier_chapitre:>,<:chapitre:icone_creer_chapitre:>})]
+		<h1>(#ENV{titre,#INFO_TITRE_FR{chapitre,#ID_CHAPITRE}|sinon{<:info_sans_titre:>}})</h1>
+	]
+</div>
+
+#SET{redirect,#ENV{redirect,#ID_CHAPITRE|generer_url_entite{chapitre}}}
+[(#ENV{retourajax,''}|oui)
+	#SET{redirect,'javascript:if (window.jQuery) jQuery(".entete-formulaire .retour a").followLink();'}
+	<div class="ajax">
+]
+		[(#FORMULAIRE_EDITER_CHAPITRE{#ENV{id_chapitre,oui}, #GET{redirect}, #ENV{associer_objet}})]
+[(#ENV{retourajax,''}|oui)
+	</div>
+	<script type="text/javascript">/*<!\[CDATA\[*/reloadExecPage('#ENV{exec}');/*\]\]>*/</script>
+]
+</div>

@@ -1,0 +1,82 @@
+
+
+<!-- CHAPITRES -->
+<BOUCLE_chapitre(CHAPITRES){id_chapitre}{statut IN publie, prepa, prop, refuse}>
+
+	<!-- chapitres > thématiques -->
+	<BOUCLE_chapitre_thematiques(THEMATIQUES chapitres_liens){id_chapitre}{statut IN publie, prepa, prop, refuse}>
+	
+		<!-- thématique sur projet -->
+		<BOUCLE_chapitre_them_projet(PROJETS thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+				<BOUCLE_chapitre_them_projets_ville(VILLES projets_liens){id_projet}{statut IN publie, prepa, prop, refuse}>
+					<BOUCLE_chapitre_them_projets_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+						<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville, id_projet=#_chapitre_them_projet:ID_PROJET, id_thematique=#_chapitre_thematiques:ID_THEMATIQUE, id_chapitre=#_chapitre:ID_CHAPITRE} />
+					</BOUCLE_chapitre_them_projets_pays>
+				</BOUCLE_chapitre_them_projets_ville>
+		</BOUCLE_chapitre_them_projet>
+		
+		<!-- thématique sur ville -->
+		<BOUCLE_chapitre_them_ville(VILLES thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+				<BOUCLE_chapitre_them_ville_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+					<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville, id_thematique=#_chapitre_thematiques:ID_THEMATIQUE, id_chapitre=#_chapitre:ID_CHAPITRE} />
+				</BOUCLE_chapitre_them_ville_pays>
+		</BOUCLE_chapitre_them_ville>
+		
+		<!-- thématique sur pays -->
+		<BOUCLE_chapitre_pays(PAYS thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+			<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_thematique=#_chapitre_thematiques:ID_THEMATIQUE, id_chapitre=#_chapitre:ID_CHAPITRE} />
+		</BOUCLE_chapitre_pays>
+			
+	</BOUCLE_chapitre_thematiques>
+	
+</BOUCLE_chapitre>
+
+<!-- THÉMATIQUES -->
+<BOUCLE_thematiques(THEMATIQUES){id_thematique}{statut IN publie, prepa, prop, refuse}>
+
+	<!-- thématique sur projet -->
+	<BOUCLE_them_projet(PROJETS thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+		<BOUCLE_them_projets_ville(VILLES projets_liens){id_projet}{statut IN publie, prepa, prop, refuse}>
+			<BOUCLE_them_projets_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+				<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville, id_projet=#_them_projet:ID_PROJET, id_thematique=#_thematiques:ID_THEMATIQUE} />
+			</BOUCLE_them_projets_pays>
+		</BOUCLE_them_projets_ville>
+	</BOUCLE_them_projet>
+	
+	<!-- thématique sur ville -->
+	<BOUCLE_them_ville(VILLES thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+		<BOUCLE_them_ville_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+			<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville, id_thematique=#_thematiques:ID_THEMATIQUE} />
+		</BOUCLE_them_ville_pays>
+	</BOUCLE_them_ville>
+	
+	<!-- thématique sur pays -->
+	<BOUCLE_them_pays(PAYS thematiques_liens){id_thematique}{statut IN publie, prepa, prop, refuse}>
+		<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_thematique} />
+	</BOUCLE_them_pays>
+
+</BOUCLE_thematiques>
+
+
+<!-- VILLES -->
+<BOUCLE_villes(VILLES){id_ville}{tout}>
+	<BOUCLE_ville_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+		<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville} />
+	</BOUCLE_ville_pays>
+</BOUCLE_villes>
+
+
+<!-- PROJETS -->
+<BOUCLE_projets(PROJETS){id_projet}{statut IN publie, prepa, prop, refuse}>
+	<BOUCLE_projets_ville(VILLES projets_liens){id_projet}{statut IN publie, prepa, prop, refuse}>
+		<BOUCLE_projets_pays(PAYS villes_liens){id_ville}{statut IN publie, prepa, prop, refuse}>
+			<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay, id_ville, id_projet} />
+		</BOUCLE_projets_pays>
+	</BOUCLE_projets_ville>
+</BOUCLE_projets>
+
+<!-- PAYS -->
+<BOUCLE_pays(PAYS){id_pay}{statut IN publie, prepa, prop, refuse}>
+			<INCLURE{fond=prive/squelettes/contenu/hierarchie_pays, id_pay} />
+</BOUCLE_pays>
+

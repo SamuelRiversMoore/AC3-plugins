@@ -1,0 +1,37 @@
+<paquet
+	prefix="mc3_inventaire"
+	categorie="divers"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.20;3.1.*]"
+	logo="prive/themes/spip/images/mc3_inventaire-64.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2015-10-23 17:57:41
+	-->
+
+	<nom>MC3 inventaires</nom>
+
+	<auteur>emmanuel kormann</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="mc3_inventaire_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/mc3_inventaire.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/mc3_inventaire.php" /> 
+	<pipeline nom="declarer_tables_auxiliaires" inclure="base/mc3_inventaire.php" /> 
+	<pipeline nom="affiche_milieu" inclure="mc3_inventaire_pipelines.php" /> 
+	<pipeline nom="affiche_auteurs_interventions" inclure="mc3_inventaire_pipelines.php" /> 
+	<pipeline nom="optimiser_base_disparus" inclure="mc3_inventaire_pipelines.php" /> 
+
+	<pipeline nom="header_prive" inclure="mc3_inventaire_pipelines.php" /> 
+	<pipeline nom="affiche_gauche" inclure="mc3_inventaire_pipelines.php" /> 
+	
+	<menu nom="inventaire" titre="mc3_inventaire:mc3_inventaire_titre_menu" parent="menu_edition" icone="images/pay-16.png" action="inventaire" />
+	
+</paquet>

@@ -1,0 +1,26 @@
+<div class="hierarchie_inventaire">
+	<ul class="pays">
+	
+		<BOUCLE_pays(PAYS){id_pay}{statut IN publie, prepa, prop, refuse}{doublons}>
+			
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				 [(#STATUT|puce_statut{pay,#ID_PAY})] <a href="#URL_ECRIRE?exec=pay&id_pay=#ID_PAY">#NOM_FR</a> 
+				<INCLURE{fond=prive/squelettes/contenu/hierarchie_thematiques, id_pay, id_thematique, id_chapitre} />
+				<INCLURE{fond=prive/squelettes/contenu/hierarchie_villes, id_ville, id_pay, id_thematique, id_projet, id_chapitre} />
+			</li>
+		
+		</BOUCLE_pays>
+		
+		<BOUCLE_pays_autre(PAYS){statut IN publie, prepa, prop, refuse}{doublons}{par nom_fr}>
+					<li class="pays_autres">
+						[(#STATUT|puce_statut{pay,#ID_PAY})] <a href="#URL_ECRIRE?exec=pay&id_pay=#ID_PAY">#NOM_FR</a> 
+					</li>
+		</BOUCLE_pays_autre>
+		
+		<li class="ajouter"><a href="#URL_ECRIRE?exec=pay_edit&new=oui">+ Ajouter un pays</a></li>
+
+	</ul>	
+</div>
+
+	
+	

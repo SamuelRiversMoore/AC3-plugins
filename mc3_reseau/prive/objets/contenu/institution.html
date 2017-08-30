@@ -1,0 +1,18 @@
+<BOUCLE_institution(INSTITUTIONS){id_institution}{statut?}>
+
+[<div class="champ contenu_nom[ (#NOM*|strlen|?{'',vide})]">
+	<label><:institution:champ_nom_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{nom} nom'>(#NOM)</span>
+</div>]
+
+[<div class="champ contenu_description[ (#DESCRIPTION*|strlen|?{'',vide})]">
+	<label><:institution:champ_description_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{description} description'>(#DESCRIPTION)</span>
+</div>]
+
+[<div class="champ contenu_lien[ (#LIEN*|strlen|?{'',vide})]">
+	<label><:institution:champ_lien_label:> : </label>
+	<span dir='#LANG_DIR' class='#EDIT{lien} lien'>(#LIEN)</span>
+</div>]
+
+</BOUCLE_institution>

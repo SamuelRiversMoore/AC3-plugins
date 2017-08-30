@@ -1,0 +1,38 @@
+<div class='formulaire_spip formulaire_editer formulaire_#FORM formulaire_#FORM-#ENV{id_projet,nouveau}'>
+	[<p class="reponse_formulaire reponse_formulaire_ok">(#ENV**{message_ok})</p>]
+	[<p class="reponse_formulaire reponse_formulaire_erreur">(#ENV*{message_erreur})</p>]
+
+	[(#ENV{editable})
+	<form method='post' action='#ENV{action}'><div>
+		#ACTION_FORMULAIRE{#ENV{action}}
+		<input type='hidden' name='id_projet' value='#ENV{id_projet}' />
+		<ul>
+
+			[(#SAISIE{input, titre_fr,
+				label=<:projet:champ_titre_fr_label:>})]
+
+			[(#SAISIE{textarea, description_fr,
+				label=<:projet:champ_description_fr_label:>,inserer_barre=edition})]
+
+			[(#SAISIE{input, titre_en,
+				label=<:projet:champ_titre_en_label:>})]
+
+			[(#SAISIE{textarea, description_en,
+				label=<:projet:champ_description_en_label:>,inserer_barre=edition})]
+
+			[(#SAISIE{input, latitude,
+				label=<:projet:champ_latitude_label:>})]
+
+			[(#SAISIE{input, longitude,
+				label=<:projet:champ_longitude_label:>})]
+
+			[(#SAISIE{hidden, mapbox,
+				label=<:projet:champ_mapbox_label:>})]
+
+		</ul>
+		[(#REM) ajouter les saisies supplementaires : extra et autre, a cet endroit ]
+		<!--extra-->
+		<p class="boutons"><input type='submit' class='submit' value='<:bouton_enregistrer:>' /></p>
+	</div></form>
+	]
+</div>

@@ -1,0 +1,12 @@
+<B_ville_pays_thematiques>
+	<ul class="thematiques">
+		<BOUCLE_ville_pays_thematiques(THEMATIQUES){id_pay?}{id_projet?}{id_ville?}{statut IN publie, prepa, prop, refuse}>
+			<li [(#EXPOSE|=={on}|oui)class="ouvert"]>
+				 [(#STATUT|puce_statut{thematique,#ID_THEMATIQUE})] <a href="#URL_ECRIRE?exec=thematique&id_thematique=#ID_THEMATIQUE">
+					#TITRE_FR
+				 </a>
+				[(#EXPOSE|=={on}|oui) <INCLURE{fond=prive/squelettes/contenu/hierarchie_chapitres, id_thematique, id_chapitre} />]
+			</li>
+		</BOUCLE_ville_pays_thematiques>
+	</ul>
+</B_ville_pays_thematiques>

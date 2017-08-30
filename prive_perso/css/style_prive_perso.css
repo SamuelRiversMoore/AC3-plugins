@@ -1,0 +1,25 @@
+/*--- spip en général ---*/
+.largeur{
+	width:calc(100% - 4rem);
+	min-width:780px;
+	margin-right:2rem;
+	margin-left:2rem;
+}
+
+#conteneur{
+	width:100%;
+}
+
+#navigation{
+	width:28%;
+}
+
+#contenu{
+	width:70%;
+	margin-left:0%;
+}
+
+/*--- supprimer création rapide ---*/
+#bando_outils ul.creer, #bando_outils ul.deroulant{
+	display:none;
+}

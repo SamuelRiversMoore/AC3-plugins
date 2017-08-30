@@ -1,0 +1,48 @@
+<div class="hierarchie_inventaire">
+				<ul class="pays pays_eclate">
+					<BOUCLE_pays(PAYS){tout}{par nom_fr}{tout}>
+						<li>
+								[(#STATUT|puce_statut{pay,#ID_PAY})]
+								<a href="#URL_ECRIRE?exec=pay&id_pay=#ID_PAY"> #NOM_FR</a>
+								
+								<INCLURE{fond=prive/squelettes/contenu/inventaire_thematiques, id_pay}>
+							
+								<B_ville>
+									<ul class="villes">
+										<BOUCLE_ville(VILLES){id_pay}{par nom_fr}{tout}>
+											<li>
+													[(#STATUT|puce_statut{ville,#ID_VILLE})]
+													<a href="#URL_ECRIRE?exec=ville&id_ville=#ID_VILLE"> #NOM_FR</a>
+												
+												<INCLURE{fond=prive/squelettes/contenu/inventaire_thematiques, id_ville}>
+											
+										
+												<B_projets>
+													<ul class="projets">
+														<BOUCLE_projets(PROJETS){id_ville}{par titre_fr}{tout}>
+															<li>
+																	[(#STATUT|puce_statut{projet,#ID_PROJET})]
+																	<a href="#URL_ECRIRE?exec=projet&id_projet=#ID_PROJET"> #TITRE_FR</a>
+																
+																
+																<INCLURE{fond=prive/squelettes/contenu/inventaire_thematiques, id_projet}>
+															</li>
+														</BOUCLE_projets>
+													</ul>
+												</B_projets>
+											</li>
+										</BOUCLE_ville>
+									</ul>
+								</B_ville>
+						</li>
+					</BOUCLE_pays>
+					
+					<li class="ajouter"><a href="#URL_ECRIRE?exec=pay_edit&new=oui">+ Ajouter un pays</a></li>
+				</ul>
+			
+</div>
+
+
+
+
+

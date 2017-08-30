@@ -1,0 +1,13 @@
+<BOUCLE_pay(PAYS){id_pay}{statut?}>
+
+[<div class="champ contenu_nom_fr[ (#NOM_FR*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:pay:champ_nom_fr_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{nom_fr} nom_fr'>(#NOM_FR)</div>
+</div>]
+
+[<div class="champ contenu_nom_en[ (#NOM_EN*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:pay:champ_nom_en_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{nom_en} nom_en'>(#NOM_EN)</div>
+</div>]
+
+</BOUCLE_pay>

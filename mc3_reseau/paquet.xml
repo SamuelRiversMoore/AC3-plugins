@@ -1,0 +1,30 @@
+<paquet
+	prefix="mc3_reseau"
+	categorie="divers"
+	version="1.0.0"
+	etat="dev"
+	compatibilite="[3.0.20;3.1.*]"
+	logo="prive/themes/spip/images/mc3_reseau-64.png"
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet genere le 2015-11-03 13:10:29
+	-->
+
+	<nom>MC3 réseau</nom>
+
+	<auteur>emmanuel kormann</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies"  compatibilite="[1.24.0;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="mc3_reseau_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/mc3_reseau.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/mc3_reseau.php" /> 
+	<pipeline nom="affiche_enfants" inclure="mc3_reseau_pipelines.php" /> 
+	<pipeline nom="objet_compte_enfants" inclure="mc3_reseau_pipelines.php" /> 
+
+</paquet>

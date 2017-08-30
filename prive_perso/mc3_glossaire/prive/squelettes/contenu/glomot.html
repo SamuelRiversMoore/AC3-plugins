@@ -1,0 +1,46 @@
+[(#AUTORISER{voir,glomot,#ID_GLOMOT}|sinon_interdire_acces)]
+<BOUCLE_glomot(GLOMOTS){id_glomot}{statut==.*}{si #ENV{exec}|=={glomot}}>
+[(#BOITE_OUVRIR{[
+	[(#AUTORISER{modifier,glomot,#ID_GLOMOT})
+		[(#ID_GLOMOT|afficher_qui_edite{glomot}|non)
+			[(#URL_ECRIRE{glomot_edit,id_glomot=#ID_GLOMOT}|icone_verticale{<:glomot:icone_modifier_glomot:>,glomot,edit,right ajax preload})]
+		]
+		[(#ID_GLOMOT|afficher_qui_edite{glomot}|oui)
+			[(#URL_ECRIRE{glomot_edit,id_glomot=#ID_GLOMOT}|icone_verticale{#ID_GLOMOT|afficher_qui_edite{glomot},warning-24,'',right edition_deja ajax preload})]
+		]
+	]
+
+	<h1>[(#RANG). ](#TITRE|sinon{<:info_sans_titre:>})[(#CHEMIN_IMAGE{glomot-24.png}|balise_img{glomot,cadre-icone})]</h1>
+
+],simple fiche_objet})]
+
+<div class="ajax">
+	#FORMULAIRE_DATER{glomot,#ID_GLOMOT}
+</div>
+
+<!--affiche_milieu-->
+
+<div id="wysiwyg">
+<INCLURE{fond=prive/objets/contenu/glomot,id=#ID_GLOMOT,id_glomot=#ID_GLOMOT,virtuel=oui,ajax=wysiwyg,wysiwyg=1}>
+</div>
+
+<div class="nettoyeur"></div>
+
+[(#AUTORISER{modifier,glomot,#ID_GLOMOT})
+	[(#ID_GLOMOT|afficher_qui_edite{glomot}|non)
+		[(#URL_ECRIRE{glomot_edit,id_glomot=#ID_GLOMOT}|icone_verticale{<:glomot:icone_modifier_glomot:>,glomot,edit,right ajax preload})]
+	]
+	[(#ID_GLOMOT|afficher_qui_edite{glomot}|oui)
+		[(#URL_ECRIRE{glomot_edit,id_glomot=#ID_GLOMOT}|icone_verticale{#ID_GLOMOT|afficher_qui_edite{glomot},warning-24,'',right edition_deja ajax preload})]
+	]
+]
+
+#PIPELINE{afficher_complement_objet,#ARRAY{args,#ARRAY{type,glomot,id,#ID_GLOMOT},data,'<div class="nettoyeur"></div>'}}
+
+#BOITE_FERMER
+[(#EVAL{_AJAX}|oui)
+	<script type="text/javascript">/*<!\\[CDATA\\[*/reloadExecPage('#ENV{exec}','#navigation,#chemin,#extra');/*\\]\\]>*/</script>
+]
+</BOUCLE_glomot>
+[(#ENV**{exec}|=={glomot_edit}|?{#INCLURE{fond=prive/squelettes/contenu/glomot_edit,redirect='',env,retourajax=oui},#REM|sinon_interdire_acces})]
+<//B_glomot>

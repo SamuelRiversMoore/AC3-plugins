@@ -1,0 +1,38 @@
+<BOUCLE_projet(PROJETS){id_projet}{statut?}>
+
+[<div class="champ contenu_titre_fr[ (#TITRE_FR*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_titre_fr_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{titre_fr} titre_fr'>(#TITRE_FR)</div>
+</div>]
+
+[<div class="champ contenu_description_fr[ (#DESCRIPTION_FR*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_description_fr_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{description_fr} description_fr'>(#DESCRIPTION_FR)</div>
+</div>]
+
+[<div class="champ contenu_titre_en[ (#TITRE_EN*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_titre_en_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{titre_en} titre_en'>(#TITRE_EN)</div>
+</div>]
+
+[<div class="champ contenu_description_en[ (#DESCRIPTION_EN*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_description_en_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{description_en} description_en'>(#DESCRIPTION_EN)</div>
+</div>]
+
+[<div class="champ contenu_latitude[ (#LATITUDE*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_latitude_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{latitude} latitude'>(#LATITUDE)</div>
+</div>]
+
+[<div class="champ contenu_longitude[ (#LONGITUDE*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_longitude_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{longitude} longitude'>(#LONGITUDE)</div>
+</div>]
+
+[<div class="champ contenu_mapbox[ (#MAPBOX*|strlen|?{'',vide})]">
+	<h3 class="titre_apercu"><:projet:champ_mapbox_label:></h3>
+	<div dir='#LANG_DIR' class='#EDIT{mapbox} mapbox'>(#MAPBOX)</div>
+</div>]
+
+</BOUCLE_projet>
