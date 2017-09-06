@@ -1,0 +1,16 @@
+<BOUCLE_partenaire(PARTENAIRES){id_partenaire=#ENV{id}}>
+<div class="infos">
+[(#SET{texte_objet,<:partenaire:titre_partenaire:>})]
+<div class="numero"><:titre_cadre_numero_objet{objet=#GET{texte_objet}}:><p>#ID_PARTENAIRE</p></div>
+
+	<div class='nb_elements'><!--nb_elements--></div>
+
+	[(#AUTORISER{supprimer, partenaire, #ID_PARTENAIRE}|oui)
+		[(#BOUTON_ACTION{
+			[(#CHEMIN_IMAGE{partenaire-del-24.png}|balise_img{<:partenaire:supprimer_partenaire:>}|concat{' ',#VAL{<:partenaire:supprimer_partenaire:>}|wrap{<b>}}|trim)],
+			#URL_ACTION_AUTEUR{supprimer_partenaire, #ID_PARTENAIRE, #URL_ECRIRE{partenaires}},
+			icone s24 horizontale danger partenaire-del-24, <:partenaire:confirmer_supprimer_partenaire:>})]
+	]
+
+</div>
+</BOUCLE_partenaire>

@@ -1,0 +1,30 @@
+<paquet
+	prefix="mc3_partenaires"
+	categorie="divers"
+	version="1.0.0"
+	etat="stable"
+	compatibilite="[3.1.6;3.1.*]"
+	logo=""
+	documentation=""
+	schema="1.0.0" 
+>
+	<!--
+		Paquet généré le 2017-09-06 11:21:38
+	-->
+
+	<nom>mc3_partenaires</nom>
+	
+
+	<auteur>emmanuel.kormann</auteur>
+
+	<licence>GNU/GPL</licence>
+	<necessite nom="saisies" compatibilite="[2.4.0;]" /> 
+
+
+	<pipeline nom="autoriser" inclure="mc3_partenaires_autorisations.php" /> 
+
+	<pipeline nom="declarer_tables_objets_sql" inclure="base/mc3_partenaires.php" /> 
+	<pipeline nom="declarer_tables_interfaces" inclure="base/mc3_partenaires.php" /> 
+
+	<menu nom="partenaires" titre="partenaire:titre_partenaires" parent="menu_edition" icone="images/partenaire-16.png" action="partenaires" /> 
+</paquet>
